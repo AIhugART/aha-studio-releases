@@ -21,7 +21,7 @@ cách tạo ảnh đầu tiên khi extension trình duyệt chưa phát hành.
 | Nền tảng | File | Trạng thái |
 |---|---|---|
 | **Windows** 10/11 (64-bit) | `AHA-Studio-Setup-x.y.z.exe` | ✅ có sẵn |
-| **macOS** | — | ⬜ chưa phát hành |
+| **macOS** — chỉ Apple Silicon (chip M-series), chưa hỗ trợ Intel | `AHA-Studio-macos-arm64-x.y.z.dmg` | ✅ có sẵn |
 
 ## Repo này chứa gì
 
