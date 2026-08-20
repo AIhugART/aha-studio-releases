@@ -50,39 +50,48 @@ nguyên xi, khiến trang đầu repo công khai hiện một dòng tiêu đề 
 khối "⬜ CHƯA CÓ BẢN PHÁT HÀNH NÀO" trong khi `v1.0.1` đang nằm ngay đó, và 4 liên kết trỏ vào
 `docs/product/...` — những file **không tồn tại** với người ngoài.
 
+**Sửa ngày 2026-08-20 (thu về đúng vai "nơi chứa file", xem
+`plan/2026-08-20_website_download_page_and_install_guide.md` D10):** một lỗi THẬT KHÁC bị phát
+hiện cùng lúc — `Windows/README.md` (đã đăng công khai) hứa *"trình duyệt sẽ mở trang cài extension
+→ Add to Chrome"*, trong khi installer **không đụng** extension (xem `scripts/packaging/
+aha-studio.iss` ở repo private). Bốn README con (`Windows/`, `MacOS/`, `plugin/`,
+`chrome_extension/`) là bốn bản sao **chờ lệch** với hướng dẫn thật trên website — một trong số đó
+đã lệch, đã công khai. Đã **xoá cả bốn**; hướng dẫn đầy đủ giờ CHỈ sống ở
+`ahastudio.aihug.art/download` — không thể lệch với thứ không tồn tại.
+
 | File | Viết cho ai | Được lên public? |
 |---|---|---|
-| `README.md` | **Người dùng cuối** — trang đầu, dẫn tới Releases | ✅ (bản đã viết lại 2026-08-20) |
-| `Windows/`, `MacOS/`, `plugin/`, `chrome_extension/` | Người dùng cuối | ✅ |
+| `README.md` | **Người dùng cuối** — trang đầu, CHỈ trỏ về `ahastudio.aihug.art/download` (không còn hướng dẫn cài đặt tại đây) | ✅ |
 | `version.json.example` | Người phát hành | ✅ — nó là **mẫu cấu trúc**, không phải dữ liệu thật |
 | `CLAUDE.md` (file này) | LLM làm việc **trong repo public** | ✅ |
+| `Windows/`, `MacOS/`, `plugin/`, `chrome_extension/` | — | ❌ **ĐÃ XOÁ 2026-08-20** — đừng tạo lại. Xem §2 |
 | Bất kỳ file nào nhắc `docs/product/`, `plan/`, "vùng dàn trang", hay trạng thái nội bộ | Người trong nhóm | ❌ **KHÔNG** |
 
 **Kiểm trước mỗi lần copy** — hai lệnh, và cả hai phải cho kết quả rỗng:
 
 ```bash
-grep -rn "docs/product\|plan/2026\|vùng dàn trang" *.md */*.md   # link/khái niệm nội bộ
-grep -rn "BẢN NHÁP\|CHƯA CÓ BẢN PHÁT HÀNH" *.md */*.md            # còn ĐÚNG với thực tế không?
+grep -rn "docs/product\|plan/2026\|vùng dàn trang" *.md   # link/khái niệm nội bộ
+grep -rn "BẢN NHÁP\|CHƯA CÓ BẢN PHÁT HÀNH" *.md            # còn ĐÚNG với thực tế không?
 ```
 
 Lệnh thứ hai **không** phải "xoá sạch mọi banner nháp". Banner nháp đúng khi nó **thật**: ngày
-2026-08-20, `MacOS/` và `chrome_extension/` giữ banner (chưa có gói macOS, chưa chốt kênh phân phối
-extension) còn `Windows/` và `plugin/` phải bỏ (installer đã phát hành). Một banner sai theo chiều
-nào cũng tệ như nhau — nói "chưa có" khi đã có thì người dùng bỏ đi, nói "đã có" khi chưa có thì
-người dùng đi tìm thứ không tồn tại.
+2026-08-20, `README.md` giữ dòng "macOS: ⬜ chưa phát hành" (đúng — chưa có gói macOS). Một banner
+sai theo chiều nào cũng tệ như nhau — nói "chưa có" khi đã có thì người dùng bỏ đi, nói "đã có" khi
+chưa có thì người dùng đi tìm thứ không tồn tại.
 
 ---
 
 ## 2. Cấu trúc repo
 
 ```
-README.md                 Trang đầu người dùng thấy
-Windows/README.md         Hướng dẫn cài trên Windows
-MacOS/README.md           Hướng dẫn cài trên macOS  (⬜ chưa từng chạy thật)
-plugin/                   Hướng dẫn cài panel Photoshop (.ccx)
-chrome_extension/         Hướng dẫn cài extension    (⬜ kênh phân phối chưa quyết)
+README.md                 Trang đầu — CHỈ nêu nền tảng nào có file + trỏ về website
 version.json.example      MẪU cấu trúc manifest tự cập nhật — KHÔNG phải manifest thật
 ```
+
+**KHÔNG còn `Windows/`, `MacOS/`, `plugin/`, `chrome_extension/`** — đã xoá 2026-08-20 (§1b). Toàn
+bộ hướng dẫn cài đặt/sử dụng sống Ở MỘT NƠI DUY NHẤT: `ahastudio.aihug.art/download` (repo private
+`aha-paint`, `server/resources/views/site/download.blade.php`). Đừng tạo lại các thư mục này để
+"tiện tra cứu ngay trên GitHub" — đó chính xác là cách lỗi §1b đã xảy ra.
 
 **GitHub Releases** giữ file thật (binary + manifest đã ký). Git tree giữ **văn bản**. Đừng commit
 binary vào git tree — đó là lý do Releases tồn tại.
