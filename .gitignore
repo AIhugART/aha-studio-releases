@@ -1,0 +1,29 @@
+# Thư mục này là vùng DÀN TRANG TÀI LIỆU, không phải nơi chứa binary.
+#
+# Binary chỉ tồn tại dưới dạng GitHub Release asset. Commit chúng vào repo source làm repo phình
+# ra vĩnh viễn (git giữ mọi blob trong history, xoá file sau đó không thu lại được dung lượng) —
+# và với gói daemon tầng 2 (torch + ~531MB weights) thì đó là hàng GB không lấy lại được.
+#
+# Lưu ý: .gitignore ở GỐC repo đã có dòng `*.ccx`, nên file .ccx trong plugin/ bị bỏ qua ÂM THẦM
+# dù không có dòng nào ở đây. Dòng `*.ccx` dưới đây chỉ để nói rõ ý định, không phải thứ tạo ra
+# hành vi đó.
+
+*.zip
+*.exe
+*.msi
+*.dmg
+*.pkg
+*.ccx
+*.tar.gz
+*.7z
+
+# Manifest THẬT của một bản phát hành cũng không thuộc repo source — nó là release asset, được CI
+# sinh ra và ký. Chỉ file mẫu (version.json.example) được commit.
+version.json
+# Chữ ký tách file của manifest (P4, 2026-08-13) — cùng lý do, cùng vòng đời với version.json.
+version.json.sig
+
+# Nhưng luôn giữ chính file này và các hướng dẫn
+!.gitignore
+!*.md
+!version.json.example

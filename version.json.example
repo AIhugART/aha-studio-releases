@@ -1,0 +1,34 @@
+{
+  "_comment_1": "MẪU CẤU TRÚC — mọi giá trị dưới đây là placeholder, không phải bản phát hành thật.",
+  "_comment_2": "Manifest thật do CI sinh + ký, phát hành dưới dạng GitHub Release asset, KHÔNG commit vào repo source.",
+  "_comment_3": "Đặc tả từng field: docs/product/09_auto_update.md §3. Vì sao phải ký: cùng file, §1 (U1).",
+  "_comment_4": "File NÀY không còn field 'signature' — chữ ký nằm ở file CẠNH NÓ, version.json.sig (sửa P4, 2026-08-13). Xem _comment_signature ở cuối file để biết vì sao.",
+
+  "version": "1.0.0",
+  "min_supported_version": "1.0.0",
+  "released_at": "2026-08-13",
+  "rollout_percent": 100,
+
+  "_comment_platform_keys": "Key dat ten theo KIEN TRUC ngay tu v1 (D24). Them mot key sau nay la ADDITIVE; DOI TEN mot key sau khi client da phat hanh la pha hop dong voi dung nhung ban cai cu khong the tu sua. Chi phi doi bay gio bang khong vi chua co client nao doc file nay. Windows arm64 chua co ban build, nhung cho ten da san sang.",
+
+  "windows_x86_64": {
+    "download_url": "https://github.com/OWNER/aha-studio-releases/releases/download/v1.0.0/aha-paint-daemon_windows_x86_64_v1.0.0.zip",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "size_bytes": 0
+  },
+  "macos_arm64": {
+    "download_url": "https://github.com/OWNER/aha-studio-releases/releases/download/v1.0.0/aha-paint-daemon_macos_arm64_v1.0.0.zip",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "size_bytes": 0
+  },
+  "macos_x86_64": {
+    "download_url": "https://github.com/OWNER/aha-studio-releases/releases/download/v1.0.0/aha-paint-daemon_macos_x86_64_v1.0.0.zip",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "size_bytes": 0
+  },
+
+  "changelog": "Bản phát hành đầu tiên.",
+  "force_update": false,
+
+  "_comment_signature": "KHÔNG có field signature ở đây (đổi trong P4, 2026-08-13). Chữ ký Ed25519 tính trên ĐÚNG BYTE THÔ của file version.json này, xuất bản dưới dạng một GitHub Release asset RIÊNG tên version.json.sig (scripts/packaging/sign_manifest.py). Daemon verify version.json.sig trước khi đọc bất cứ field nào trong file này. Vì sao không nhúng field signature vào chính JSON này: chữ ký sẽ phải loại trừ field đó rồi build lại canonical JSON để verify — bất kỳ khác biệt json.dumps() nào giữa script ký và daemon verify (đặc biệt ensure_ascii với chữ có dấu ở changelog) làm MỌI bản phát hành hỏng chữ ký cùng lúc. Chữ ký tách file loại bỏ hoàn toàn bước tái tạo đó. sha256 trong mỗi platform object ở trên chỉ chống hỏng đường truyền của FILE BINARY — nó nằm cùng manifest với URL nên một mình nó KHÔNG chống được kẻ tấn công; version.json.sig mới là thứ chống giả mạo manifest."
+}
