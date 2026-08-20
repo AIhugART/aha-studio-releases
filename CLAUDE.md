@@ -42,6 +42,37 @@ dùng chung cho cả hệ sinh thái — rồi mới cài plugin Photoshop như 
 
 ---
 
+## 1b. ⚠️ Thư mục nguồn trộn HAI loại tài liệu — chỉ một loại được đi
+
+Nội dung ở đây soạn trong repo private tại `github_release/`, rồi copy sang repo public. **Không
+phải file nào ở đó cũng được đi**, và đây là lỗi đã xảy ra thật ngày 2026-08-20: cả thư mục bị copy
+nguyên xi, khiến trang đầu repo công khai hiện một dòng tiêu đề "vùng dàn trang phát hành", một
+khối "⬜ CHƯA CÓ BẢN PHÁT HÀNH NÀO" trong khi `v1.0.1` đang nằm ngay đó, và 4 liên kết trỏ vào
+`docs/product/...` — những file **không tồn tại** với người ngoài.
+
+| File | Viết cho ai | Được lên public? |
+|---|---|---|
+| `README.md` | **Người dùng cuối** — trang đầu, dẫn tới Releases | ✅ (bản đã viết lại 2026-08-20) |
+| `Windows/`, `MacOS/`, `plugin/`, `chrome_extension/` | Người dùng cuối | ✅ |
+| `version.json.example` | Người phát hành | ✅ — nó là **mẫu cấu trúc**, không phải dữ liệu thật |
+| `CLAUDE.md` (file này) | LLM làm việc **trong repo public** | ✅ |
+| Bất kỳ file nào nhắc `docs/product/`, `plan/`, "vùng dàn trang", hay trạng thái nội bộ | Người trong nhóm | ❌ **KHÔNG** |
+
+**Kiểm trước mỗi lần copy** — hai lệnh, và cả hai phải cho kết quả rỗng:
+
+```bash
+grep -rn "docs/product\|plan/2026\|vùng dàn trang" *.md */*.md   # link/khái niệm nội bộ
+grep -rn "BẢN NHÁP\|CHƯA CÓ BẢN PHÁT HÀNH" *.md */*.md            # còn ĐÚNG với thực tế không?
+```
+
+Lệnh thứ hai **không** phải "xoá sạch mọi banner nháp". Banner nháp đúng khi nó **thật**: ngày
+2026-08-20, `MacOS/` và `chrome_extension/` giữ banner (chưa có gói macOS, chưa chốt kênh phân phối
+extension) còn `Windows/` và `plugin/` phải bỏ (installer đã phát hành). Một banner sai theo chiều
+nào cũng tệ như nhau — nói "chưa có" khi đã có thì người dùng bỏ đi, nói "đã có" khi chưa có thì
+người dùng đi tìm thứ không tồn tại.
+
+---
+
 ## 2. Cấu trúc repo
 
 ```

@@ -1,6 +1,7 @@
 # Panel AHA Paint cho Photoshop
 
-> **⬜ BẢN NHÁP — chưa có bản `.ccx` nào được ký và phát hành.** Xem [../README.md](../README.md).
+> Panel đi **kèm trong file cài đặt**, không tải riêng. Nó **không được ký số** — giống chính file
+> cài đặt, nên Creative Cloud sẽ hỏi xác nhận khi cài. Xem [../README.md](../README.md).
 
 ---
 

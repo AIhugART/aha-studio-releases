@@ -1,10 +1,5 @@
 # Cài AHA Paint trên Windows
 
-> **⬜ BẢN NHÁP — chưa có bản phát hành nào.** Hướng dẫn này viết trước để review; chưa có installer
-> để tải. Xem [../README.md](../README.md).
-
----
-
 ## Cần có trước
 
 - Windows 10 hoặc 11 (64-bit)

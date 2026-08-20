@@ -37,7 +37,7 @@ key của mình trong tab Settings) — không cần extension, không cần Chr
 
 Đường nào được chọn phụ thuộc kết quả kiểm tra chính sách của Chrome Web Store — việc này chưa làm,
 và bản hướng dẫn chính thức sẽ chỉ viết sau khi có câu trả lời rõ ràng. Trạng thái:
-[docs/product/05_status_and_roadmap.md](../../docs/product/05_status_and_roadmap.md) §4.28, giả định
+kế hoạch nội bộ, giả định
 **A4**.
 
 ## Cập nhật

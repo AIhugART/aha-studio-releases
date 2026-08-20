@@ -1,57 +1,59 @@
-# AHA Paint — vùng dàn trang phát hành
+# AHA Studio
 
-> ## ⬜ CHƯA CÓ BẢN PHÁT HÀNH NÀO
->
-> Thư mục này chứa **tài liệu hướng dẫn cho người dùng cuối** và **manifest mẫu** — nội dung sẽ được
-> đưa lên repo phát hành công khai. Hôm nay chưa có installer, chưa có binary, chưa có bản `.ccx` nào
-> được ký. Toàn bộ hướng dẫn ở đây là **bản nháp**, viết trước để lúc phát hành không phải viết gấp,
-> và để mọi hứa hẹn với người dùng được review trước khi thành thật.
->
-> Trạng thái thật: [docs/product/05_status_and_roadmap.md](../docs/product/05_status_and_roadmap.md) §4.28.
+Bộ công cụ AI cho người sáng tạo. Ảnh được tạo **trên máy bạn**, bằng phiên đăng nhập của **chính
+bạn** với nhà cung cấp AI — không byte pixel nào đi qua máy chủ của chúng tôi.
 
----
+## ⬇️ Tải về
 
-## 1. Thư mục này là gì
+**[→ Trang tải mới nhất](../../releases/latest)**
 
-Đây **không** phải một bản phát hành. Nó là nơi soạn nội dung cho repo công khai
-`aha-studio-releases`, nơi người dùng sẽ tải file về:
-
-```
-aha-paint            (private)  → source code, workflow build, VERSION
-aha-studio-releases   (public)   → GitHub Releases: binary + manifest đã ký + hướng dẫn
-```
-
-Tách hai repo vì tải file từ Releases của một repo private cần Personal Access Token, mà nhúng token
-vào ứng dụng phân phối là tự tạo một bí mật không thể giữ được.
-
-## 2. Nội dung
-
-| Đường dẫn | Nội dung | Dành cho |
+| Nền tảng | File | Trạng thái |
 |---|---|---|
-| [Windows/README.md](Windows/README.md) | Hướng dẫn cài trên Windows + cách vượt cảnh báo SmartScreen | Người dùng cuối |
-| [MacOS/README.md](MacOS/README.md) | Hướng dẫn cài trên macOS + cách vượt cảnh báo Gatekeeper | Người dùng cuối |
-| [plugin/README.md](plugin/README.md) | Cài panel Photoshop (`.ccx`) và vì sao nó **không** tự cập nhật | Người dùng cuối |
-| [chrome_extension/README.md](chrome_extension/README.md) | Cài extension và vì sao AHA Paint cần nó | Người dùng cuối |
-| [version.json.example](version.json.example) | Manifest cập nhật **mẫu** — cấu trúc, không phải bản thật | Người phát hành |
+| **Windows** 10/11 (64-bit) | `AHA-Studio-Setup-x.y.z.exe` | ✅ có sẵn |
+| **macOS** | — | ⬜ chưa phát hành |
 
-## 3. Quy tắc của thư mục này
+> File `.exe` nằm ở tab **Releases**, không nằm trong danh sách file của trang này. Đó là cố ý:
+> git giữ lại mọi phiên bản của mọi file vĩnh viễn, nên gói cài đặt được phát hành riêng thay vì
+> lưu trong repo.
 
-1. **Không commit binary vào repo source.** `.gitignore` trong thư mục này chặn `*.zip`, `*.exe`,
-   `*.dmg`, `*.pkg`, `*.msi`, `*.ccx`. Binary chỉ tồn tại dưới dạng **GitHub Release asset**, không
-   phải file trong git — repo source sẽ phình ra vĩnh viễn và không xoá lại được.
-2. **Một cái bẫy đã biết:** `.gitignore` ở gốc repo có dòng `*.ccx`. Nghĩa là một file `.ccx` bỏ vào
-   `plugin/` sẽ bị git bỏ qua **âm thầm** — không báo lỗi, chỉ đơn giản không được commit. Đừng dựa
-   vào việc thấy file trong thư mục để kết luận nó đã được lưu.
-3. **Không đặt bí mật ở đây.** Mật khẩu certificate, private key ký manifest, token phát hành đều
-   thuộc GitHub Secrets. Thư mục này là nơi **công khai** theo thiết kế.
-4. **Mọi câu hứa với người dùng phải khớp thực tế.** Nếu chưa mua chữ ký số thì hướng dẫn phải nói
-   thẳng là sẽ có cảnh báo — che nó đi chỉ làm người dùng nghĩ mình tải phải virus.
+Windows sẽ hiện cảnh báo **"Unknown Publisher"** khi bạn chạy file. Đây là chuyện bình thường với
+phần mềm chưa mua chữ ký số — bấm **More info → Run anyway**. Chúng tôi nói thẳng điều này thay vì
+giấu đi: [hướng dẫn chi tiết](Windows/README.md).
 
-## 4. Tài liệu liên quan
+## Cài gì vào máy
 
-| Muốn biết | Đọc |
+Một file cài đặt duy nhất đặt vào máy bạn:
+
+- **AHA Studio** — chương trình chạy nền, là nơi chứa và quản lý mọi ảnh AI bạn tạo ra, đồng thời
+  là cầu nối tới các phần mềm thiết kế.
+- **AHA Paint** — panel trong **Photoshop**. Cài kèm sẵn, có thể bỏ chọn khi cài.
+
+Sau này sẽ có thêm **AHA Video** cho Premiere — khi đó nó là một lựa chọn nữa trong cùng file cài
+đặt này, không phải một file cài đặt riêng.
+
+## Hướng dẫn
+
+| Bạn cần | Đọc |
 |---|---|
-| Đóng gói thế nào, ký số ra sao, kênh phân phối nào | [docs/product/08_packaging_and_distribution.md](../docs/product/08_packaging_and_distribution.md) |
-| Cập nhật hoạt động thế nào, thất bại thì sao | [docs/product/09_auto_update.md](../docs/product/09_auto_update.md) |
-| Vì sao chọn từng phương án, phương án nào bị loại | [plan/2026-08-13_packaging_and_auto_update.md](../plan/2026-08-13_packaging_and_auto_update.md) |
-| Còn thiếu gì trước khi phát hành được | [docs/product/05_status_and_roadmap.md](../docs/product/05_status_and_roadmap.md) §4.28 |
+| Cài trên Windows, và cách vượt cảnh báo | [Windows/README.md](Windows/README.md) |
+| Cài trên macOS ⬜ | [MacOS/README.md](MacOS/README.md) |
+| Panel Photoshop — cài, và vì sao nó không tự cập nhật | [plugin/README.md](plugin/README.md) |
+| Extension trình duyệt — vì sao cần, và nó làm gì | [chrome_extension/README.md](chrome_extension/README.md) |
+
+## Vài điều nên biết trước khi cài
+
+**Lần đầu bấm nút Shape / Nearly / Exactly**, ứng dụng sẽ tải thêm khoảng **260 MB** thư viện AI,
+kèm thanh tiến độ. Bạn không phải tự tải hay tự cài gì — nhưng nếu đang dùng mạng tính theo dung
+lượng thì nên biết trước. Các tính năng khác không cần khoản tải này.
+
+**Ảnh của bạn nằm ở máy bạn.** Mặc định là `%APPDATA%\AHA Paint\AHA_studio_data`. Đổi được trong
+AHA Studio → Cài đặt → **Nơi lưu** — hữu ích khi ổ C: đầy. Khi đổi, ảnh được **chép sang chỗ mới
+rồi mới xoá ở chỗ cũ**, nên gián đoạn giữa chừng cũng không mất gì.
+
+**Chúng tôi không giữ mật khẩu nhà cung cấp AI của bạn.** Ứng dụng dùng phiên đăng nhập sẵn có
+trong trình duyệt bạn đang dùng.
+
+## Repo này chứa gì
+
+Chỉ tài liệu hướng dẫn và các bản phát hành. **Không có mã nguồn** — mã nguồn nằm ở một repo riêng,
+không công khai.
